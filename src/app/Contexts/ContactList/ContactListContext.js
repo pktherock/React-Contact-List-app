@@ -2,7 +2,16 @@
 import { createContext, useContext } from "react";
 
 export const ContactListContext = createContext({
-  contacts: [{}],
+  contacts: [
+    {
+      id: 1,
+      name: "prashant",
+      email: "p@gmail.com",
+      phone: "9999999999",
+      address: "Bihar, 851216",
+      createdAt: "2023-12-23T08:20:08.822Z"
+    },
+  ],
   addContact: (contactInfo) => {},
   updateContact: (id, updatedContact) => {},
   deleteContact: (id) => {},

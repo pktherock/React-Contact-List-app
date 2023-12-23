@@ -1,26 +1,66 @@
 import PropTypes from "prop-types";
 import { ContactListProvider } from "./ContactListContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { RingLoader } from "react-spinners";
+
+import { alertService, contactService } from "../../Services";
 
 function ContactListContextProvider({ children }) {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const addContact = (contactInfo) => {
-    console.log("Contact Info", contactInfo);
+  const addContact = async (contactInfo) => {
+    setLoading(true);
+    try {
+      const contact = await contactService.addContact(contactInfo);
+      setContacts([...contacts, contact]);
+      console.log("Added contact Info", contact);
+      alertService.success("Contact added successfully!");
+    } catch (error) {
+      console.log("Error while adding contact", error);
+      alertService.error("Adding contact failed!");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const updateContact = (id, updatedContact) => {
-    console.log("Contact Id", id);
-    console.log("Updated Contact Info", updatedContact);
+  const updateContact = async (id, updateInfo) => {
+    setLoading(true);
+    try {
+      const updatedContact = await contactService.updateContact(id, updateInfo);
+      console.log("Updated contact info", updatedContact);
+      setContacts((prevState) =>
+        prevState.map((contact) =>
+          contact.id === id ? updatedContact : contact
+        )
+      );
+      alertService.success("Contact Updated successfully!");
+    } catch (error) {
+      console.log("Error while Updating contact", error);
+      alertService.error("Update contact failed!");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const deleteContact = (id) => {
-    console.log("Deleted Contact id", id);
+  const deleteContact = async (id) => {
+    const isConfirm = confirm("Are you sure? want to delete?");
+    if (!isConfirm) return;
+    setLoading(true);
+    try {
+      const data = await contactService.deleteContact(id);
+      console.log("Deleted Info", data);
+      setContacts((prevState) =>
+        prevState.filter((contact) => contact.id !== id)
+      );
+      alertService.success("Contact deleted successfully!");
+    } catch (error) {
+      console.log("Error while deleting contact", error);
+      alertService("Delete contact failed!");
+    } finally {
+      setLoading(false);
+    }
   };
-
-  useEffect(() => {}, []);
 
   return (
     <ContactListProvider
