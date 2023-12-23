@@ -3,15 +3,22 @@ import { useContact } from "../../Contexts";
 import { Container } from "../index";
 import Contact from "./Contact";
 import ContactFrom from "./ContactFrom";
+import { ArrowUturnLeftIcon } from "@heroicons/react/24/solid";
+import { useNavigate } from "react-router-dom";
 
 function ContactList() {
   const { contacts } = useContact();
   const [showContactForm, setShowContactForm] = useState(false);
 
   const [contact, setContact] = useState(null);
+  const navigate = useNavigate();
 
   return (
     <Container>
+      <ArrowUturnLeftIcon
+        onClick={() => navigate("/")}
+        className="h-12 w-12 p-3 font-bold bg-white border rounded-full shadow-xl hover:shadow-md hover:bg-gray-400"
+      />
       {showContactForm && (
         <ContactFrom contactInfo={contact} setContact={setContact} />
       )}

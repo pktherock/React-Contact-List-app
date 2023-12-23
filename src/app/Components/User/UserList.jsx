@@ -1,14 +1,23 @@
 import { RingLoader } from "react-spinners";
 import { useAxios } from "../../Hooks";
 import User from "./User";
+import { ArrowUturnLeftIcon } from "@heroicons/react/24/solid";
+import { useNavigate } from "react-router-dom";
+import { Container } from "../index";
 
 function UsersList() {
   const [loading, error, users] = useAxios(
     "https://jsonplaceholder.typicode.com/users"
   );
 
+  const navigate = useNavigate();
+
   return (
-    <div>
+    <Container>
+      <ArrowUturnLeftIcon
+        onClick={() => navigate("/")}
+        className="h-12 w-12 p-3 font-bold bg-white border rounded-full shadow-xl hover:shadow-md hover:bg-gray-400"
+      />
       {loading && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 bg-black bg-opacity-20">
           <RingLoader
@@ -36,7 +45,7 @@ function UsersList() {
       {users.map((user) => (
         <User key={user.id} userInfo={user} />
       ))}
-    </div>
+    </Container>
   );
 }
 
