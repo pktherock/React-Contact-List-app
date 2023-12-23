@@ -22,10 +22,10 @@ class ContactService {
   };
 
   updateContact = async (id, updateInfo) => {
-        // todo id is not working on json place holder so we have to update only upto 10
+    // todo id is not working on json place holder so we have to update only upto 10
     const config = {
       method: "PUT",
-      url: `${BASE_URL}/users/10`, // ! bug 
+      url: `${BASE_URL}/users/10`, // ! bug
       data: updateInfo,
       headers: {
         "Content-type": "application/json; charset=UTF-8",

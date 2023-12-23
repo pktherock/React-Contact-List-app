@@ -6,9 +6,13 @@ import { RingLoader } from "react-spinners";
 import { alertService, contactService } from "../../Services";
 
 function ContactListContextProvider({ children }) {
+  // state to hold the contacts
   const [contacts, setContacts] = useState([]);
+
+  // state to hold loading state
   const [loading, setLoading] = useState(false);
 
+  // function to add contact
   const addContact = async (contactInfo) => {
     setLoading(true);
     try {
@@ -24,6 +28,7 @@ function ContactListContextProvider({ children }) {
     }
   };
 
+  // function to update contact
   const updateContact = async (id, updateInfo) => {
     setLoading(true);
     try {
@@ -41,6 +46,7 @@ function ContactListContextProvider({ children }) {
     }
   };
 
+  // function to delete contact
   const deleteContact = async (id) => {
     const isConfirm = confirm("Are you sure? want to delete?");
     if (!isConfirm) return;
