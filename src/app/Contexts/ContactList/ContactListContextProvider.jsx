@@ -30,9 +30,7 @@ function ContactListContextProvider({ children }) {
       const updatedContact = await contactService.updateContact(id, updateInfo);
       console.log("Updated contact info", updatedContact);
       setContacts((prevState) =>
-        prevState.map((contact) =>
-          contact.id === id ? updatedContact : contact
-        )
+        prevState.map((contact) => (contact.id === id ? updateInfo : contact))
       );
       alertService.success("Contact Updated successfully!");
     } catch (error) {

@@ -6,7 +6,7 @@ class ContactService {
   addContact = async (contactInfo) => {
     const config = {
       method: "POST",
-      url: `${BASE_URL}/posts`,
+      url: `${BASE_URL}/users`,
       data: {
         ...contactInfo,
         createdAt: new Date().toISOString(),
@@ -22,9 +22,10 @@ class ContactService {
   };
 
   updateContact = async (id, updateInfo) => {
+        // todo id is not working on json place holder so we have to update only upto 10
     const config = {
       method: "PUT",
-      url: `${BASE_URL}/posts/${id}`,
+      url: `${BASE_URL}/users/10`, // ! bug 
       data: updateInfo,
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -38,7 +39,7 @@ class ContactService {
   deleteContact = async (id) => {
     const config = {
       method: "DELETE",
-      url: `${BASE_URL}/posts/${id}`,
+      url: `${BASE_URL}/users/${id}`,
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
