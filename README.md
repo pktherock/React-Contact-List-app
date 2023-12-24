@@ -2,14 +2,14 @@
 
 ## Coding ninjas React Skill Test 2
 
-- Built by using React (vite), Tailwind css, and context api, React spinners, React toastify, React router dom, Axios
+- Built by using React (vite), Tailwind CSS, context api, React spinners, React toastify, React router dom, Axios
 
 ## Features
 
-- Custom Hook to call api end points
+- Custom Hook to call api endpoints
 - CRUD operation on any api
 - Context api for storing contact lists
-- Generic alertService to show success, error and warn message using react toastify library
+- Generic alert service to show success, error, and warn messages using react toastify library
 - Generic Spinner using react spinners library
 
 ## Project Folder structure
@@ -19,7 +19,7 @@
   - Contexts -> All Contexts
   - Hooks -> All Hooks
   - Layouts -> This folder contains Public layout, Header, footer component
-  - Services -> All service to call api end points or access outside of the project resources
+  - Services -> All services to call api endpoints or access outside of the project resources
   - app.routes.jsx -> Routing configuration file
 
 ## How to run this project locally
@@ -27,7 +27,7 @@
 - Clone this repository
 - Run "npm install" inside this project
 - Run "npm run dev" command to run this project locally
-- Copy & Open url in any browser that's it
+- Copy and open URL in any browser that's it
 
 # React + Vite
 
